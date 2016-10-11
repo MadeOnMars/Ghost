@@ -12,7 +12,7 @@ module.exports = {
         featured: {type: 'bool', nullable: false, defaultTo: false},
         page: {type: 'bool', nullable: false, defaultTo: false},
         status: {type: 'string', maxlength: 150, nullable: false, defaultTo: 'draft'},
-        language: {type: 'string', maxlength: 6, nullable: false, defaultTo: 'en_US'},
+        language: {type: 'string', maxlength: 6, nullable: false, defaultTo: 'en'},
         visibility: {type: 'string', maxlength: 150, nullable: false, defaultTo: 'public', validations: {isIn: [['public']]}},
         meta_title: {type: 'string', maxlength: 150, nullable: true},
         meta_description: {type: 'string', maxlength: 200, nullable: true},
