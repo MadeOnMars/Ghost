@@ -11,6 +11,8 @@ config = {
     // When running Ghost in the wild, use the production environment.
     // Configure your URL and mail settings here
     production: {
+        locales: ['en', 'fr'],
+        secret: 'this is a secret',
         url: 'http://my-ghost-blog.com',
         mail: {},
         database: {
@@ -29,6 +31,8 @@ config = {
 
     // ### Development **(default)**
     development: {
+        locales: ['en', 'fr'],
+        secret: 'this is a secret',
         // The url to use when providing links to the site, E.g. in RSS and email.
         // Change this to your Ghost blog's published URL.
         url: 'http://localhost:2368',
@@ -83,6 +87,8 @@ config = {
     // Used when developing Ghost to run tests and check the health of Ghost
     // Uses a different port number
     testing: {
+        locales: ['en', 'fr'],
+        secret: 'this is a secret',
         url: 'http://127.0.0.1:2369',
         database: {
             client: 'sqlite3',
@@ -109,6 +115,8 @@ config = {
     // ### Testing MySQL
     // Used by Travis - Automated testing run through GitHub
     'testing-mysql': {
+        locales: ['en', 'fr'],
+        secret: 'this is a secret',
         url: 'http://127.0.0.1:2369',
         database: {
             client: 'mysql',
@@ -130,6 +138,8 @@ config = {
     // ### Testing pg
     // Used by Travis - Automated testing run through GitHub
     'testing-pg': {
+        locales: ['en', 'fr'],
+        secret: 'this is a secret',
         url: 'http://127.0.0.1:2369',
         database: {
             client: 'pg',
