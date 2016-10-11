@@ -35,6 +35,7 @@ coreHelpers.prev_post = require('./prev_next');
 coreHelpers.next_post = require('./prev_next');
 coreHelpers.tags = require('./tags');
 coreHelpers.title = require('./title');
+coreHelpers.translate = require('./translate');
 coreHelpers.twitter_url = require('./twitter_url');
 coreHelpers.url = require('./url');
 
@@ -112,6 +113,7 @@ registerHelpers = function (adminHbs) {
     registerThemeHelper('post_class', coreHelpers.post_class);
     registerThemeHelper('tags', coreHelpers.tags);
     registerThemeHelper('title', coreHelpers.title);
+    registerThemeHelper('__', coreHelpers.translate);
     registerThemeHelper('twitter_url', coreHelpers.twitter_url);
     registerThemeHelper('facebook_url', coreHelpers.facebook_url);
     registerThemeHelper('url', coreHelpers.url);

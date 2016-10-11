@@ -15,6 +15,9 @@ date = function (date, options) {
 
         // set to published_at by default, if it's available
         // otherwise, this will print the current date
+        if(options.data.root.lang){
+          moment.locale(options.data.root.lang);
+        }
         if (this.published_at) {
             date = moment(this.published_at).tz(timezone).format();
         }

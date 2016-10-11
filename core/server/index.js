@@ -183,7 +183,6 @@ function init(options) {
     }).then(function () {
         // Get reference to an express app instance.
         var parentApp = express();
-
         // ## Middleware and Routing
         middleware(parentApp);
 

@@ -3,6 +3,9 @@ var bodyParser      = require('body-parser'),
     config          = require('../config'),
     errors          = require('../errors'),
     express         = require('express'),
+    session         = require('express-session'),
+    i18nFront       = require('i18n-2'),
+    lang            = require('./lang'),
     hbs             = require('express-hbs'),
     logger          = require('morgan'),
     path            = require('path'),
@@ -72,6 +75,9 @@ setupMiddleware = function setupMiddleware(blogApp) {
     if (config.server.compress !== false) {
         blogApp.use(compress());
     }
+    // ## Front i18n Configuration
+    i18nFront.expressBind(blogApp, {locales: config.locales});
+    blogApp.use(session({ secret: config.secret || 'thisisasecret', resave: true, saveUninitialized: true }));
 
     // ## View engine
     // set the view engine
@@ -208,7 +214,8 @@ setupMiddleware = function setupMiddleware(blogApp) {
     blogApp.use(maintenance);
 
     // Set up Frontend routes (including private blogging routes)
-    blogApp.use(routes.frontend());
+    blogApp.use('/fr', lang, routes.frontend());
+    blogApp.use(lang, routes.frontend());
 
     // ### Error handling
     // 404 Handler

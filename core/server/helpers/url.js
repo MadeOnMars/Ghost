@@ -8,8 +8,8 @@ var getMetaDataUrl = require('../data/meta/url');
 
 function url(options) {
     var absolute = options && options.hash.absolute;
-
-    return getMetaDataUrl(this, absolute);
+    var lang = options.data.root.lang || 'en';
+    return getMetaDataUrl(this, absolute, lang);
 }
 
 module.exports = url;
