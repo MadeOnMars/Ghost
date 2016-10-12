@@ -69,3 +69,6 @@ CHANGELOG.md
 
 # Coverage reports
 coverage.html
+
+fabfile.py
+*.pyc
