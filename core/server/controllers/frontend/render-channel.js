@@ -17,6 +17,7 @@ function renderChannel(req, res, next) {
         slugParam = req.params.slug ? safeString(req.params.slug) : undefined;
 
     // Ensure we at least have an empty object for postOptions
+    channelOpts.postOptions = {'filter': {'language':req.lang}};
     channelOpts.postOptions = channelOpts.postOptions || {};
     // Set page on postOptions for the query made later
     channelOpts.postOptions.page = pageParam;
