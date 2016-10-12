@@ -9,6 +9,51 @@ For more information about normal Ghost please follow the links below :
 - [Ghost.org](https://ghost.org)
 - [Github repo](https://github.com/TryGhost/Ghost)
 
+
+# Install production
+
+```bash
+cd ghost
+```
+
+Install grunt. No prizes here.
+
+```bash
+npm install -g grunt-cli
+```
+
+```bash
+npm install
+```
+
+Build the things!
+
+```bash
+grunt init
+```
+
+If the above fails, you can try
+
+```bash
+cp config.example.js config.js
+cd core/client
+bower install --allow-root
+grunt shell:ember:prod
+cd ../..
+```
+
+Minify that shit for production?
+
+```bash
+grunt prod
+```
+
+Start your engines.
+
+```bash
+npm start --production
+```
+
 # Install (from git)
 
 Install Node.js. (See [Supported Node.js versions](http://support.ghost.org/supported-node-versions/))
