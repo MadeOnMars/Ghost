@@ -219,10 +219,12 @@ setupMiddleware = function setupMiddleware(blogApp) {
 
     // ### Error handling
     // 404 Handler
-    blogApp.use(errors.error404);
+    blogApp.use('/fr', lang, errors.error404);
+    blogApp.use(lang, errors.error404);
 
     // 500 Handler
-    blogApp.use(errors.error500);
+    blogApp.use('/fr', lang, errors.error500);
+    blogApp.use(lang, errors.error500);
 };
 
 module.exports = setupMiddleware;
