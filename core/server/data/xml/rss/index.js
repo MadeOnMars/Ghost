@@ -46,13 +46,18 @@ function getData(channelOpts, slugParam) {
             posts: result.posts,
             meta: result.meta
         };
-
+        for(var i=0; i < response.results.posts.length; i++){
+          if(response.results.posts[i].language != 'en'){
+            response.results.posts[i].url = '/'+response.results.posts[i].language+response.results.posts[i].url
+          }
+        }
         return response;
     });
 }
 
 function getBaseUrl(req, slugParam) {
     var baseUrl = config.paths.subdir;
+    var lang = req.lang;
 
     if (isTag(req)) {
         baseUrl += '/' + config.routeKeywords.tag + '/' + slugParam + '/rss/';
@@ -61,7 +66,9 @@ function getBaseUrl(req, slugParam) {
     } else {
         baseUrl += '/rss/';
     }
-
+    if(lang&&lang != 'en'){
+      baseUrl = '/' + lang + baseUrl;
+    }
     return baseUrl;
 }
 
@@ -159,13 +166,20 @@ generate = function generate(req, res, next) {
     var pageParam = req.params.page !== undefined ? req.params.page : 1,
         slugParam = req.params.slug,
         baseUrl   = getBaseUrl(req, slugParam);
-
+    var lang = req.lang;
+    var langUrl = '';
+    if(lang&&lang != 'en'){
+      langUrl = lang;
+    }
     // Ensure we at least have an empty object for postOptions
     req.channelConfig.postOptions = req.channelConfig.postOptions || {};
     // Set page on postOptions for the query made later
     req.channelConfig.postOptions.page = pageParam;
 
     req.channelConfig.slugParam = slugParam;
+
+    // Filter by language
+    req.channelConfig.postOptions = {'filter': {'language':req.lang}};
 
     return getData(req.channelConfig).then(function then(data) {
         var maxPage = data.results.meta.pagination.pages;
@@ -176,7 +190,7 @@ generate = function generate(req, res, next) {
         }
 
         data.version = res.locals.safeVersion;
-        data.siteUrl = config.urlFor('home', {secure: req.secure}, true);
+        data.siteUrl = config.urlFor('home', {secure: req.secure}, true) + langUrl;
         data.feedUrl = config.urlFor({relativeUrl: baseUrl, secure: req.secure}, true);
         data.secure = req.secure;
 
