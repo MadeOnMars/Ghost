@@ -13,6 +13,7 @@ For more information about normal Ghost please follow the links below :
 # Install production
 
 ```bash
+git clone https://github.com/MadeOnMars/Ghost.git
 cd ghost
 ```
 
@@ -48,10 +49,10 @@ Minify that shit for production?
 grunt prod
 ```
 
-Start your engines.
+Start your engines. We recommend pm2
 
 ```bash
-npm start --production
+pm2 start process.json
 ```
 
 # Install (from git)
