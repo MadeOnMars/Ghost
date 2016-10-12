@@ -9,5 +9,6 @@
 	"by this author": "de cet auteur",
 	"Share this post": "Partager cet article",
 	"Go to the front page": "Aller à la page d'accueil",
-	"Page not found": "Page introuvable"
+	"Page not found": "Page introuvable",
+	"'s Picture": "'s Picture"
 }

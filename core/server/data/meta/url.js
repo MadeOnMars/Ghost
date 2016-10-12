@@ -12,9 +12,8 @@ function sanitizeAmpUrl(url) {
 }
 
 function getUrl(data, absolute, lang) {
-    var lang = (lang == 'en')?'':'/'+lang;
     if (schema.isPost(data)) {
-        return lang+config.urlFor('post', {post: data, secure: data.secure}, absolute);
+        return config.urlFor('post', {post: data, secure: data.secure}, absolute);
     }
 
     if (schema.isTag(data)) {
