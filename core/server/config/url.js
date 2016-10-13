@@ -148,8 +148,9 @@ function urlPathForPost(post) {
 // - data (optional) - a json object containing data needed to generate a url
 // - absolute (optional, default:false) - boolean whether or not the url should be absolute
 // This is probably not the right place for this, but it's the best place for now
-function urlFor(context, data, absolute) {
+function urlFor(context, data, absolute, lang) {
     var urlPath = '/',
+        prefixLang = (lang&&lang!='en')?'/'+lang:'',
         secure, imagePathRe,
         knownObjects = ['post', 'tag', 'author', 'image', 'nav'], baseUrl,
         hostname,
@@ -161,7 +162,6 @@ function urlFor(context, data, absolute) {
         api: apiPath,
         sitemap_xsl: '/sitemap.xsl'
     };
-
     // Make data properly optional
     if (_.isBoolean(data)) {
         absolute = data;
@@ -180,10 +180,10 @@ function urlFor(context, data, absolute) {
             urlPath = langUrl + data.post.url;
             secure = data.secure;
         } else if (context === 'tag' && data.tag) {
-            urlPath = urlJoin('/', ghostConfig.routeKeywords.tag, data.tag.slug, '/');
+            urlPath = prefixLang + urlJoin('/', ghostConfig.routeKeywords.tag, data.tag.slug, '/');
             secure = data.tag.secure;
         } else if (context === 'author' && data.author) {
-            urlPath = urlJoin('/', ghostConfig.routeKeywords.author, data.author.slug, '/');
+            urlPath = prefixLang + urlJoin('/', ghostConfig.routeKeywords.author, data.author.slug, '/');
             secure = data.author.secure;
         } else if (context === 'image' && data.image) {
             urlPath = data.image;

@@ -18,7 +18,6 @@ var hbs             = require('express-hbs'),
 
 author = function (options) {
     var lang = options.data.root.lang || 'en';
-    var prefixLang = (lang == 'en')?'':'/'+lang;
     if (options.fn) {
         return hbs.handlebars.helpers.with.call(this, this.author, options);
     }
@@ -29,7 +28,7 @@ author = function (options) {
     if (this.author && this.author.name) {
         if (autolink) {
             output = utils.linkTemplate({
-                url: prefixLang+config.urlFor('author', {author: this.author}),
+                url: config.urlFor('author', {author: this.author}, false, lang),
                 text: _.escape(this.author.name)
             });
         } else {
