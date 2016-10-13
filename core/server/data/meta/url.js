@@ -12,16 +12,17 @@ function sanitizeAmpUrl(url) {
 }
 
 function getUrl(data, absolute, lang) {
+    var langUrl = (lang&&lang!='en')?'/'+lang:'';
     if (schema.isPost(data)) {
         return config.urlFor('post', {post: data, secure: data.secure}, absolute);
     }
 
     if (schema.isTag(data)) {
-        return lang+config.urlFor('tag', {tag: data, secure: data.secure}, absolute);
+        return langUrl+config.urlFor('tag', {tag: data, secure: data.secure}, absolute);
     }
 
     if (schema.isUser(data)) {
-        return lang+config.urlFor('author', {author: data, secure: data.secure}, absolute);
+        return langUrl+config.urlFor('author', {author: data, secure: data.secure}, absolute);
     }
 
     if (schema.isNav(data)) {
