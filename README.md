@@ -15,6 +15,7 @@ For more information about normal Ghost please follow the links below :
 ```bash
 git clone https://github.com/MadeOnMars/Ghost.git
 cd ghost
+git submodule update --init --recursive
 ```
 
 Install grunt. No prizes here.
