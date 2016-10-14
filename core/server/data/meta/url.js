@@ -12,21 +12,20 @@ function sanitizeAmpUrl(url) {
 }
 
 function getUrl(data, absolute, lang) {
-    var langUrl = (lang&&lang!='en')?'/'+lang:'';
     if (schema.isPost(data)) {
-        return config.urlFor('post', {post: data, secure: data.secure}, absolute);
+        return config.urlFor('post', {post: data, secure: data.secure}, absolute, lang);
     }
 
     if (schema.isTag(data)) {
-        return langUrl+config.urlFor('tag', {tag: data, secure: data.secure}, absolute);
+        return config.urlFor('tag', {tag: data, secure: data.secure}, absolute, lang);
     }
 
     if (schema.isUser(data)) {
-        return langUrl+config.urlFor('author', {author: data, secure: data.secure}, absolute);
+        return config.urlFor('author', {author: data, secure: data.secure}, absolute, lang);
     }
 
     if (schema.isNav(data)) {
-        return config.urlFor('nav', {nav: data, secure: data.secure}, absolute);
+        return config.urlFor('nav', {nav: data, secure: data.secure}, absolute, lang);
     }
 
     // sanitize any trailing `/amp` in the url

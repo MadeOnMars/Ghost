@@ -17,7 +17,6 @@ tags = function (options) {
     options = options || {};
     options.hash = options.hash || {};
     var lang = options.data.root.lang || 'en';
-    var prefixLang = (lang == 'en')?'':'/'+lang;
     var autolink   = !(_.isString(options.hash.autolink) && options.hash.autolink === 'false'),
         separator  = _.isString(options.hash.separator) ? options.hash.separator : ', ',
         prefix     = _.isString(options.hash.prefix) ? options.hash.prefix : '',
@@ -44,7 +43,7 @@ tags = function (options) {
             }
 
             var tagOutput = autolink ? utils.linkTemplate({
-                url: prefixLang+config.urlFor('tag', {tag: tag}),
+                url: config.urlFor('tag', {tag: tag}, false, lang),
                 text: _.escape(tag.name)
             }) : _.escape(tag.name);
 
