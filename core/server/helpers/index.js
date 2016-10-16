@@ -25,6 +25,7 @@ coreHelpers.ghost_head = require('./ghost_head');
 coreHelpers.image = require('./image');
 coreHelpers.is = require('./is');
 coreHelpers.has = require('./has');
+coreHelpers.lang_url = require('./lang_url');
 coreHelpers.meta_description = require('./meta_description');
 coreHelpers.meta_title = require('./meta_title');
 coreHelpers.navigation = require('./navigation');
@@ -103,6 +104,7 @@ registerHelpers = function (adminHbs) {
     registerThemeHelper('image', coreHelpers.image);
     registerThemeHelper('input_email', coreHelpers.input_email);
     registerThemeHelper('input_password', coreHelpers.input_password);
+    registerThemeHelper('lang_url', coreHelpers.lang_url);
     registerThemeHelper('meta_description', coreHelpers.meta_description);
     registerThemeHelper('meta_title', coreHelpers.meta_title);
     registerThemeHelper('navigation', coreHelpers.navigation);
