@@ -4,6 +4,7 @@ var bodyParser      = require('body-parser'),
     errors          = require('../errors'),
     express         = require('express'),
     session         = require('express-session'),
+    acceptLanguage  = require('accept-language'),
     i18nFront       = require('i18n-2'),
     lang            = require('./lang'),
     hbs             = require('express-hbs'),
@@ -70,7 +71,7 @@ setupMiddleware = function setupMiddleware(blogApp) {
         adminHbs = hbs.create();
 
     // ##Configuration
-
+    acceptLanguage.languages(config.locales);
     // enabled gzip compression by default
     if (config.server.compress !== false) {
         blogApp.use(compress());
@@ -213,6 +214,24 @@ setupMiddleware = function setupMiddleware(blogApp) {
     // send 503 error page in case of maintenance
     blogApp.use(maintenance);
 
+    // During the first visit we redirect people depending on their accept-language
+    // Only on the homepage
+    blogApp.use(function(req, res, next){
+      if(!req.session.prefLang && req.headers['accept-language']){
+        var preferedLang = acceptLanguage.get(req.headers['accept-language']);
+        if(preferedLang && config.locales.indexOf(preferedLang) != -1){
+          req.session.prefLang = preferedLang;
+          // Only on the homepage req.url.length < 4
+          if(preferedLang != config.locales[0] && req.url.length < 4){
+            var redirectUrl = (blogApp.mountpath&&blogApp.mountpath != '/')?blogApp.mountpath:'';
+            redirectUrl += '/'+preferedLang;
+            res.redirect(redirectUrl);
+            return;
+          }
+        }
+      }
+      next();
+    });
     // Set up Frontend routes (including private blogging routes)
     blogApp.use('/fr', lang, routes.frontend());
     blogApp.use(lang, routes.frontend());
