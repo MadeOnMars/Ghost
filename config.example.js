@@ -13,6 +13,7 @@ config = {
     production: {
         locales: ['en', 'fr'],
         secret: 'this is a secret',
+        disqus: 'your disqus identifier',
         url: 'http://my-ghost-blog.com',
         mail: {},
         database: {

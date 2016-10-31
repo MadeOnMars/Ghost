@@ -15,6 +15,7 @@ coreHelpers.author  = require('./author');
 coreHelpers.body_class  = require('./body_class');
 coreHelpers.content  = require('./content');
 coreHelpers.date  = require('./date');
+coreHelpers.disqus  = require('./disqus');
 coreHelpers.encode  = require('./encode');
 coreHelpers.excerpt  = require('./excerpt');
 coreHelpers.facebook_url = require('./facebook_url');
@@ -96,6 +97,7 @@ registerHelpers = function (adminHbs) {
     registerThemeHelper('body_class', coreHelpers.body_class);
     registerThemeHelper('content', coreHelpers.content);
     registerThemeHelper('date', coreHelpers.date);
+    registerThemeHelper('disqus', coreHelpers.disqus);
     registerThemeHelper('encode', coreHelpers.encode);
     registerThemeHelper('excerpt', coreHelpers.excerpt);
     registerThemeHelper('foreach', coreHelpers.foreach);
